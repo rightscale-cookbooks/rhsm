@@ -16,7 +16,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
 execute 'register instance with redhat.com' do
-  command "subscription-manager register --username #{node['fake']['rhel_username']} --password #{node['fake']['rhel_password']} --auto-attach"
+  command "subscription-manager register --username #{node['rhsm']['rhel_username']} --password #{node['rhsm']['rhel_password']} --auto-attach"
   only_if { node[:platform] == 'redhat' }
 end
