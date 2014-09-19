@@ -12,13 +12,13 @@ recipe 'rhsm::default', 'Register instance and add code to unregister at shutdow
 recipe 'rhsm::register', 'Register instance'
 recipe 'rhsm::unregister', 'Unregister instance'
 
-attribute 'rhsm/rhel_username',
+attribute 'rhsm/username',
   :display_name => 'RedHat Account Username',
   :description => 'RedHat Account Username',
   :required => 'optional',
   :recipes => ['rhsm::default', 'rhsm::register']
 
-attribute 'rhsm/rhel_password',
+attribute 'rhsm/password',
   :display_name => 'RedHat Account Password',
   :description => 'RedHat Account Password',
   :required => 'optional',
