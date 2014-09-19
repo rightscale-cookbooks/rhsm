@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: rhsm
-# Recipe:: default
+# Recipe:: unregister
 #
 # Copyright (C) 2014 RightScale, Inc.
 #
@@ -17,7 +17,11 @@
 # limitations under the License.
 #
 
-execute 'unregister instance with redhat.com' do
-  command 'subscription-manager unregister'
-  only_if { node[:platform] == 'redhat' }
+if node[:platform] == 'redhat'
+  execute 'unregister instance with redhat.com' do
+    command 'subscription-manager unregister'
+  end
+else
+  log 'Not RHEL - skipping redhat.com unregistration'
 end
+

@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: rhsm
-# Recipe:: default
+# Recipe:: register
 #
 # Copyright (C) 2014 RightScale, Inc.
 #
@@ -17,7 +17,17 @@
 # limitations under the License.
 #
 
-execute 'register instance with redhat.com' do
-  command "subscription-manager register --username #{node['rhsm']['rhel_username']} --password #{node['rhsm']['rhel_password']} --auto-attach"
-  only_if { node[:platform] == 'redhat' }
+if node[:platform] == 'redhat'
+  rhsm_username = node['rhsm']['username']
+  rhsm_password = node['rhsm']['password']
+
+  unless rhsm_username && rhsm_password
+    raise 'rhsm/username and rhsm/password attributes should be set'
+  end
+
+  execute 'register instance with redhat.com' do
+    command "subscription-manager register --username #{rhsm_username} --password #{rhsm_password} --auto-attach"
+  end
+else
+  log 'Not RHEL - skipping redhat.com registration'
 end

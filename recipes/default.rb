@@ -17,12 +17,17 @@
 # limitations under the License.
 #
 
-include_recipe 'rhsm::register'
+if node[:platform] == 'redhat'
+  include_recipe 'rhsm::register'
 
-cookbook_file '/etc/rc.d/init.d/rhsm' do
-  source 'rhsm.init'
-  mode 0755
+  cookbook_file '/etc/rc.d/init.d/rhsm' do
+    source 'rhsm.init'
+    mode 0755
+  end
+
+  execute 'chkconfig --add rhsm'
+else
+  log 'Not RHEL - skipping redhat.com registration and setup'
 end
 
-execute 'chkconfig --add rhsm'
 
