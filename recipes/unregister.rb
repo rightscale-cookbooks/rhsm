@@ -24,4 +24,3 @@ if node[:platform] == 'redhat'
 else
   log 'Not RHEL - skipping redhat.com unregistration'
 end
-
