@@ -1,0 +1,59 @@
+---
+driver_plugin: vagrant
+driver_config:
+  require_chef_omnibus: true
+  customize:
+    cpus: 1
+    memory: 512
+
+platforms:
+- name: rhel-6.5
+  run_list: ['recipe[yum-epel]', 'recipe[rhsm]']
+  attributes:
+    rhsm:
+      username: <%= ENV['RHSM_USERNAME'] %>
+      password: <%= ENV['RHSM_PASSWORD'] %>
+  driver_config:
+    box: local-rhel-6.5
+    box_url: file://<%= File.expand_path('~') %>/opscode_rhel-6.5_chef-provisionerless.box
+- name: rhel-7.0
+  run_list: ['recipe[yum-epel]', 'recipe[rhsm]']
+  attributes:
+    rhsm:
+      username: <%= ENV['RHSM_USERNAME'] %>
+      password: <%= ENV['RHSM_PASSWORD'] %>
+  driver_config:
+    box: local-rhel-7.0
+    box_url: file://<%= File.expand_path('~') %>/opscode_rhel-7.0_chef-provisionerless.box
+
+suites:
+- name: default
+  run_list: ['recipe[rhsm]']
+  attributes:
+    cloud:
+      provider: vagrant
+    rs-base:
+      collectd_server: sketchy1-66.rightscale.com
+- name: unregister
+  run_list: ['recipe[rhsm::register]', 'recipe[rhsm::unregister]']
+  attributes:
+    rs-base:
+      collectd_server: sketchy1-66.rightscale.com
+- name: ntp
+  run_list: ['recipe[rs-base::ntp]']
+  attributes : {}
+- name: rsyslog_local
+  run_list: ['recipe[rs-base::rsyslog]']
+  attributes: {}
+- name: rsyslog_remote
+  run_list: ['recipe[rs-base::rsyslog]']
+  attributes:
+    rs-base:
+      rsyslog_server: 192.168.0.1
+- name: collectd
+  run_list: ['recipe[fake::rightscale_software]', 'recipe[fake::tcpdump]', 'recipe[rs-base::collectd]']
+  attributes:
+    cloud:
+      provider: vagrant
+    rs-base:
+      collectd_server: sketchy1-66.rightscale.com
