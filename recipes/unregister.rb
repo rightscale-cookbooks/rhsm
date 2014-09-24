@@ -20,6 +20,7 @@
 if node[:platform] == 'redhat'
   execute 'unregister instance with redhat.com' do
     command 'subscription-manager unregister'
+    only_if 'subscription-manager identity'
   end
 else
   log 'Not RHEL - skipping redhat.com unregistration'

@@ -27,6 +27,7 @@ if node[:platform] == 'redhat'
 
   execute 'register instance with redhat.com' do
     command "subscription-manager register --username #{rhsm_username} --password #{rhsm_password} --auto-attach"
+    not_if 'subscription-manager identity'
   end
 else
   log 'Not RHEL - skipping redhat.com registration'
