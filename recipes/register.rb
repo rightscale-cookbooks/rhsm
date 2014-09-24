@@ -25,6 +25,7 @@ if node[:platform] == 'redhat'
     raise 'rhsm/username and rhsm/password attributes should be set'
   end
 
+  # If system is currently unregistered, register it.
   execute 'register instance with redhat.com' do
     command "subscription-manager register --username #{rhsm_username} --password #{rhsm_password} --auto-attach"
     not_if 'subscription-manager identity'
