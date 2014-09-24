@@ -1,5 +1,11 @@
 # rhsm cookbook
 
+[![Release](https://img.shields.io/github/release/rightscale-cookbooks/rhsm.svg?style=flat)][release]
+[![Build Status](https://img.shields.io/travis/rightscale-cookbooks/rhsm.svg?style=flat)][travis]
+
+[release]: https://github.com/rightscale-cookbooks/rhsm/releases/latest
+[travis]: https://travis-ci.org/rightscale-cookbooks/rhsm
+
 Cookbook to handle RedHat Subscription Management.
 
 Github Repository: [https://github.com/rightscale-cookbooks/rhsm](https://github.com/rightscale-cookbooks/rhsm)
