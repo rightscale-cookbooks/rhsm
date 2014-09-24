@@ -9,6 +9,7 @@ Github Repository: [https://github.com/rightscale-cookbooks/rhsm](https://github
 * Chef 11 or higher
 * Platform
   * RHEL 6
+  * RHEL 7
 
 # Usage
 
