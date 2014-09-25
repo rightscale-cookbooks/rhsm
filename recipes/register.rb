@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-if node[:platform] == 'redhat'
+if node['platform'] == 'redhat'
   rhsm_username = node['rhsm']['username']
   rhsm_password = node['rhsm']['password']
 
@@ -25,8 +25,10 @@ if node[:platform] == 'redhat'
     raise 'rhsm/username and rhsm/password attributes should be set'
   end
 
+  # If system is currently unregistered, register it.
   execute 'register instance with redhat.com' do
     command "subscription-manager register --username #{rhsm_username} --password #{rhsm_password} --auto-attach"
+    not_if 'subscription-manager identity'
   end
 else
   log 'Not RHEL - skipping redhat.com registration'

@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: rhsm
-# Recipe:: unregister
+# Attributes:: default
 #
 # Copyright (C) 2014 RightScale, Inc.
 #
@@ -17,12 +17,8 @@
 # limitations under the License.
 #
 
-if node['platform'] == 'redhat'
-  # If system is registered, unregister it.
-  execute 'unregister instance with redhat.com' do
-    command 'subscription-manager unregister'
-    only_if 'subscription-manager identity'
-  end
-else
-  log 'Not RHEL - skipping redhat.com unregistration'
-end
+# RedHat Account Username
+default['rhsm']['username'] = nil
+
+# RedHat Account Password
+default['rhsm']['password'] = nil

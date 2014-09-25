@@ -17,11 +17,11 @@
 # limitations under the License.
 #
 
-if node[:platform] == 'redhat'
+if node['platform'] == 'redhat'
   include_recipe 'rhsm::register'
 
   cookbook_file '/etc/rc.d/init.d/rhsm' do
-    source 'rhsm.init'
+    source 'rhsm.sh'
     mode 0755
   end
 
@@ -29,5 +29,3 @@ if node[:platform] == 'redhat'
 else
   log 'Not RHEL - skipping redhat.com registration and setup'
 end
-
-
