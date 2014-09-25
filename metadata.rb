@@ -23,3 +23,9 @@ attribute 'rhsm/password',
   :description => 'RedHat Account Password',
   :required => 'optional',
   :recipes => ['rhsm::default', 'rhsm::register']
+
+attribute 'rhsm/additional_repos',
+  :display_name => 'Additional RHEL Repos',
+  :description => 'Additional RHEL repos to enabled',
+  :required => 'optional',
+  :recipes => ['rhsm::default', 'rhsm::register']
