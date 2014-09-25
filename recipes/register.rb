@@ -18,6 +18,9 @@
 #
 
 if node['platform'] == 'redhat'
+
+  include_recipe 'chef-sugar::default'
+
   rhsm_username = node['rhsm']['username']
   rhsm_password = node['rhsm']['password']
 
@@ -28,7 +31,7 @@ if node['platform'] == 'redhat'
   end
 
   # If system is currently unregistered, register it.
-  potentially_at_compile_time do
+  compile_time do
     execute 'register instance with redhat.com' do
       command "subscription-manager register --username #{rhsm_username} --password #{rhsm_password} --auto-attach"
       not_if 'subscription-manager identity'
@@ -37,7 +40,7 @@ if node['platform'] == 'redhat'
 
   unless additional_repos.empty?
     additional_repos.each do |repo|
-      potentially_at_compile_time do
+      compile_time do
         execute 'enabling additional repo' do
           command "subscription-manager repos --enable=#{repo}"
         end

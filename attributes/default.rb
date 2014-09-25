@@ -23,8 +23,5 @@ default['rhsm']['username'] = nil
 # RedHat Account Password
 default['rhsm']['password'] = nil
 
-# Register at compile time
-default['rhsm']['compile_time'] = true
-
 # Additional repos to enable
 default['rhsm']['additional_repos'] = []

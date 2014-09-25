@@ -6,7 +6,9 @@ description      'Provides recipes to manage registration using RedHat Subscript
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '0.1.0'
 
-supports "redhat"
+supports 'redhat'
+
+depends 'chef-sugar'
 
 recipe 'rhsm::default', 'Register instance and add code to unregister at shutdown'
 recipe 'rhsm::register', 'Register instance'
