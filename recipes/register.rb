@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-if node[:platform] == 'redhat'
+if node['platform'] == 'redhat'
   rhsm_username = node['rhsm']['username']
   rhsm_password = node['rhsm']['password']
 

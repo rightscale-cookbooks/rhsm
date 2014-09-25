@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-if node[:platform] == 'redhat'
+if node['platform'] == 'redhat'
   # If system is registered, unregister it.
   execute 'unregister instance with redhat.com' do
     command 'subscription-manager unregister'
