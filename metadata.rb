@@ -30,4 +30,6 @@ attribute 'rhsm/additional_repos',
   :display_name => 'Additional RHEL Repos',
   :description => 'Additional RHEL repos to enabled',
   :required => 'optional',
+  :type => 'array',
+  :default => [],
   :recipes => ['rhsm::default', 'rhsm::register']
