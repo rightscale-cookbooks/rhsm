@@ -22,3 +22,6 @@ default['rhsm']['username'] = nil
 
 # RedHat Account Password
 default['rhsm']['password'] = nil
+
+# Additional repos to enable
+default['rhsm']['additional_repos'] = []
