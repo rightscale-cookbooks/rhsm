@@ -1,8 +1,10 @@
 # rhsm cookbook
 
+[![Cookbook](https://img.shields.io/cookbook/v/rhsm.svg?style=flat)][cookbook]
 [![Release](https://img.shields.io/github/release/rightscale-cookbooks/rhsm.svg?style=flat)][release]
 [![Build Status](https://img.shields.io/travis/rightscale-cookbooks/rhsm.svg?style=flat)][travis]
 
+[cookbook]: https://supermarket.getchef.com/cookbooks/rhsm
 [release]: https://github.com/rightscale-cookbooks/rhsm/releases/latest
 [travis]: https://travis-ci.org/rightscale-cookbooks/rhsm
 
