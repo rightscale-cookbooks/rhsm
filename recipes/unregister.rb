@@ -19,7 +19,7 @@
 
 if node['platform'] == 'redhat'
   # If system is registered, unregister it.
-  compile_time do
+  at_compile_time do
     execute 'unregister instance with redhat.com' do
       command 'subscription-manager unregister'
       only_if 'subscription-manager identity'
